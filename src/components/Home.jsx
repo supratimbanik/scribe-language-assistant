@@ -96,8 +96,8 @@ function Home() {
 
               <p className="p-slide">
                 Discover precise meanings with our comprehensive dictionary. It
-                provides detailed definitions, usage examples, and etymology,
-                helping you understand words in context. Expand your vocabulary.
+                provides detailed definitions and usage examples helping you
+                understand words in context. Expand your vocabulary.
               </p>
 
               <p className="p-slide">
