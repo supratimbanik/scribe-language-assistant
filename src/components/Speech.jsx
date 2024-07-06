@@ -15,7 +15,7 @@ function Speech() {
     useSpeechRecognition();
 
   useEffect(() => {
-    setCopyText(transcript); // Update copyText whenever transcript changes
+    setCopyText(transcript);
   }, [transcript]);
 
   const startListening = () =>

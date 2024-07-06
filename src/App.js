@@ -7,7 +7,7 @@ import Grammar from "./components/Grammar";
 import Dictionary from "./components/Dictionary";
 import Speech from "./components/Speech";
 import Translator from "./components/Translator";
-import Loader from "./components/util/Loader"; // Import the updated Loader component
+import Loader from "./components/util/Loader";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);

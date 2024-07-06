@@ -42,7 +42,7 @@ function Home() {
       showSlide(currentSlide);
     };
 
-    const slideInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+    const slideInterval = setInterval(nextSlide, 3000);
 
     return () => {
       clearInterval(slideInterval);
