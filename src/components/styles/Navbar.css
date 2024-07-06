@@ -1,0 +1,228 @@
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0);
+@import url(https://fonts.googleapis.com/css?family=Anton+SC:regular);
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+.anton-sc-logo {
+  font-family: "Anton SC", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.poppins-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.Navbar {
+  height: 3.5rem;
+}
+
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fa7070;
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, 0.3);
+  z-index: 10;
+}
+
+.nav {
+  height: 3.5rem;
+}
+
+.nav-logo,
+.nav-burger,
+.nav-close {
+  color: black;
+}
+
+.nav-data {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.25rem;
+  font-size: 2rem;
+}
+
+.nav-toggle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.nav-burger,
+.nav-close {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  inset: 0;
+  margin: auto;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: opacity 0.1s, transform 0.4s;
+}
+
+.nav-close {
+  opacity: 0;
+}
+
+li {
+  list-style: none;
+}
+
+@media screen and (max-width: 1118px) {
+  .nav-menu {
+    position: absolute;
+    left: 0;
+    top: 3rem;
+    width: 100%;
+    height: calc(100vh - 3rem);
+    overflow: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: top 0.4s, opacity 0.3s;
+  }
+
+  .nav-menu::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .nav-list {
+    margin-top: 0;
+    background-color: #fa7070;
+    box-shadow: 0 2px 16px hsla(220, 32%, 8%, 0.3);
+    padding-left: 0;
+  }
+  .dropdown-link {
+    padding-left: 1.5rem;
+  }
+}
+
+.nav-link {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+  background-color: #f57f7f;
+}
+
+.show-menu {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.show-icon .nav-burger {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+.show-icon .nav-close {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+.dropdown-link {
+  color: black;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  column-gap: 5rem;
+  transition: background-color 0.3s;
+}
+.dropdown-link {
+  padding: 1rem;
+}
+.dropdown-link:hover {
+  background-color: #f5a8a2;
+}
+.dropdown-menu {
+  background-color: #f88379;
+  padding-left: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.dropdown-menu-toggle {
+  max-height: 1000px;
+  transition: max-height 0.4s ease-in;
+}
+.dropdown-arrow {
+  transition: transform 0.3s;
+}
+.dropdown-arrow-toggle {
+  transform: rotate(180deg);
+}
+
+@media screen and (min-width: 1118px) {
+  .Navbar {
+    height: 5.5rem;
+  }
+  .container {
+    margin-inline: auto;
+  }
+  .nav {
+    height: calc(3.5rem + 2rem);
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav-toggle {
+    display: none;
+  }
+  .nav-list {
+    display: flex;
+    column-gap: 2rem;
+  }
+  .nav-link {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+  }
+  .nav-link:hover {
+    background-color: #fa7070;
+  }
+  .nav-link-span {
+    position: relative;
+  }
+
+  .nav-link-span::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000; /* Adjust color as needed */
+    transition: width 0.4s ease; /* Adjust timing function and duration as needed */
+  }
+
+  .nav-link-span:hover::after {
+    width: 100%;
+  }
+}

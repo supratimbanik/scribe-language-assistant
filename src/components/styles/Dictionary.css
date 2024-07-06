@@ -1,0 +1,102 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+
+.main {
+  background-color: #fefded;
+  min-height: calc(100vh - 5.5rem);
+  max-height: calc(100vh - 5.5rem);
+}
+@media screen and (max-width: 1118px) {
+  .main {
+    min-height: calc(100vh - 3.5rem);
+    max-height: calc(100vh - 3.5rem);
+  }
+}
+.main-container-dict {
+  background-color: #fefded;
+  min-height: calc((100vh - 5.5rem) - 40px);
+  max-height: calc((100vh - 5.5rem) - 40px);
+}
+@media screen and (max-width: 1118px) {
+  .main-container-dict {
+    min-height: calc((100vh - 3.5rem) - 40px);
+    max-height: calc((100vh - 3.5rem) - 40px);
+  }
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  min-height: 40px;
+  background-color: #a1c398;
+}
+.main-container-dict {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.heading-dict {
+  margin: 0;
+  color: #508d4e;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 2.5rem;
+}
+.dictionary-container {
+  background-color: transparent;
+  flex-basis: 500px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.search-container {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.search-result {
+  flex: 2;
+  width: 100%;
+}
+.search-input {
+  width: 45%;
+  background: transparent;
+  border: #a1c398 2px solid;
+  outline: none;
+  border-radius: 5px;
+  font-weight: 900;
+  padding: 8px;
+  font-size: 16px;
+  color: #808080;
+}
+.word {
+  color: #508d4e;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+}
+.word h1 {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+.sound-btn {
+  color: #508d4e;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.word-details {
+  color: #508d4e;
+  display: flex;
+  gap: 15px;
+}
+.word-meaning,
+.word-example {
+  color: #508d4e;
+}
