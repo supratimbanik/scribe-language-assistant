@@ -1,4 +1,3 @@
-````markdown
 # Scribe
 
 Scribe is a suite of language tools built with React, designed to enhance your writing and communication experience.
@@ -19,7 +18,6 @@ Clone the repository and install dependencies using npm:
 ```bash
 npm install
 ```
-````
 
 ## Usage
 
