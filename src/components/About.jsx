@@ -4,7 +4,7 @@ import Footer from "./util/Footer";
 import { gsap } from "gsap/gsap-core";
 import "./styles/About.css";
 
-function Translator() {
+function About() {
   useEffect(() => {
     const timeLine = gsap.timeline();
 
@@ -20,7 +20,7 @@ function Translator() {
     };
   }, []);
   return (
-    <div className="Translator">
+    <div className="About">
       <Navbar />
       <div className="main">
         <div className="main-container-about">
@@ -60,4 +60,4 @@ function Translator() {
   );
 }
 
-export default Translator;
+export default About;
