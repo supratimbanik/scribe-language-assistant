@@ -13,73 +13,60 @@ function Dictionary() {
   const [phonetic, setPhonetic] = useState("");
   const [meaning, setMeaning] = useState([]);
   const [example, setExample] = useState([]);
-  const [soundUrl, setSoundUrl] = useState("");
+  const [soundText, setSoundText] = useState("");
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     if (input.length === 0 || !input) {
-      console.log(input.length);
       setAnswer(false);
       return;
     }
     try {
-      fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data && data.length > 0) {
-            console.log(data);
-            setNoResult(false);
-            setWord(input);
-            let partOfSpeech = "";
-            let definitions = [];
-            let examples = [];
-            if (data[0].meanings && data[0].meanings.length > 0) {
-              for (let i = 0; i < Math.min(2, data[0].meanings.length); i++) {
-                const meaning = data[0].meanings[i];
-                if (meaning.partOfSpeech) {
-                  partOfSpeech += meaning.partOfSpeech + " ";
-                }
-                if (meaning.definitions && meaning.definitions.length > 0) {
-                  const definition = meaning.definitions[0];
-                  definitions.push(
-                    definition.definition +
+      const response = await fetch(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${input}`
+      );
+      const data = await response.json();
+      if (data && data.length > 0) {
+        setNoResult(false);
+        setWord(input);
+        let partOfSpeech = "";
+        let definitions = [];
+        let examples = [];
+        if (data[0].meanings && data[0].meanings.length > 0) {
+          for (let i = 0; i < Math.min(2, data[0].meanings.length); i++) {
+            const meaning = data[0].meanings[i];
+            if (meaning.partOfSpeech) {
+              partOfSpeech += meaning.partOfSpeech + " ";
+            }
+            if (meaning.definitions && meaning.definitions.length > 0) {
+              const definition = meaning.definitions[0];
+              definitions.push(
+                definition.definition +
+                  (meaning.partOfSpeech
+                    ? " (" + meaning.partOfSpeech + ")"
+                    : "")
+              );
+              examples.push(
+                definition.example
+                  ? definition.example +
                       (meaning.partOfSpeech
                         ? " (" + meaning.partOfSpeech + ")"
                         : "")
-                  );
-                  examples.push(
-                    definition.example
-                      ? definition.example +
-                          (meaning.partOfSpeech
-                            ? " (" + meaning.partOfSpeech + ")"
-                            : "")
-                      : ""
-                  );
-                }
-              }
+                  : ""
+              );
             }
-            setPos(partOfSpeech.trim());
-            setMeaning(definitions);
-            setExample(examples);
-            setPhonetic(data[0].phonetic || "");
-            if (data[0].phonetics) {
-              for (let i = 0; i < data[0].phonetics.length; i++) {
-                if (data[0].phonetics[i].audio) {
-                  setSoundUrl(`${data[0].phonetics[i].audio}`);
-                  break;
-                } else {
-                  setSoundUrl("");
-                }
-              }
-            } else {
-              setSoundUrl("");
-            }
-            setAnswer(true);
-          } else {
-            setAnswer(false);
-            setNoResult(true);
           }
-        });
+        }
+        setPos(partOfSpeech.trim());
+        setMeaning(definitions);
+        setExample(examples);
+        setPhonetic(data[0].phonetic || "");
+        setSoundText(input);
+        setAnswer(true);
+      } else {
+        setAnswer(false);
+        setNoResult(true);
+      }
     } catch (err) {
       console.log("Server Error: ", err);
       setAnswer(false);
@@ -88,20 +75,15 @@ function Dictionary() {
   };
 
   const playSound = () => {
-    console.log(soundUrl);
-    const audioElement = document.getElementById("sound-btn");
-    if (!audioElement || soundUrl.length === 0) return;
+    if (!soundText) return;
 
-    audioElement.oncanplay = () => {
-      audioElement.play();
-    };
-
-    audioElement.src = soundUrl;
+    const utterance = new SpeechSynthesisUtterance(soundText);
+    utterance.lang = "en-US";
+    speechSynthesis.speak(utterance);
   };
 
   return (
     <div className="Dictionary">
-      <audio id="sound-btn"></audio>
       <Navbar />
       <div className="main">
         <div className="main-container-dict">
@@ -117,7 +99,7 @@ function Dictionary() {
                   setInput(e.target.value);
                 }}
               />
-              <button className="btn" onClick={(e) => handleSearch(e)}>
+              <button className="btn" onClick={handleSearch}>
                 Search
               </button>
             </div>
@@ -141,7 +123,7 @@ function Dictionary() {
                     }}
                     style={{
                       cursor: "pointer",
-                      visibility: soundUrl && answer ? "visible" : "hidden",
+                      visibility: answer ? "visible" : "hidden",
                     }}
                   >
                     <VolumeUpIcon className="icon" />
@@ -156,7 +138,6 @@ function Dictionary() {
                 {meaning.map((def, index) => (
                   <React.Fragment key={index}>
                     {def}
-
                     <br />
                     <br />
                   </React.Fragment>
